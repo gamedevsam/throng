@@ -11,7 +11,7 @@
   "homepage": "https://github.com/gamedevsam/throng",
   "bugs": "https://github.com/gamedevsam/throng/issues",
   "files": [
-    "lib"
+    "dist"
   ],
   "scripts": {
     "build": "node --unhandled-rejections=strict src/cli/build.mjs",
@@ -24,13 +24,13 @@
   },
   "exports": {
     ".": {
-      "import": "./dist/esm/lib/throng.js",
-      "require": "./dist/cjs/lib/throng.js"
+      "import": "./dist/esm/throng.js",
+      "require": "./dist/cjs/throng.js"
     }
   },
-  "main": "dist/cjs/lib/throng.js",
-  "module": "dist/esm/lib/throng.js",
-  "types": "dist/cjs/lib/throng.d.ts",
+  "main": "dist/cjs/throng.js",
+  "module": "dist/esm/throng.js",
+  "types": "dist/cjs/throng.d.ts",
   "engines": {
     "node": ">= 10"
   },
