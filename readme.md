@@ -11,9 +11,15 @@ Forks N workers and creates new ones if they go down.
 Correctly handles signals from the OS.
 
 ```js
-const throng = require('throng')
+// CJS
+const throng = require('throng');
 
-throng(id => console.log(`Started worker ${id}`))
+throng((id) => console.log(`Started worker ${id}`));
+
+// ESM
+import { throng } from 'throng';
+
+throng((id) => console.log(`Started worker ${id}`));
 ```
 
 ```
@@ -35,24 +41,24 @@ $ npm install --save throng
 ### Fork 1 worker per CPU:
 
 ```js
-throng(workerStartFunction)
+throng(workerStartFunction);
 ```
 
 ### Specify the number of workers:
 
 ```js
-throng({ worker: workerStartFunction, count: 3 })
+throng({ worker: workerStartFunction, count: 3 });
 ```
 
 ### More options:
 
 ```js
 throng({
-  master: masterStartFunction,
+  primary: primaryStartFunction,
   worker: workerStartFunction,
   count: 16,
   grace: 1000
-})
+});
 ```
 
 ### Handling signals:
@@ -76,8 +82,9 @@ function worker(id, disconnect) {
 
 ```js
 throng({
-  master: () => {},               // Fn to call in master process (can be async)
+  primary: () => {},              // Fn to call in master process (can be async)
   worker: yourWorkerFunc,         // Fn to call in cluster workers (can be async)
+  workerCreated: undefined        // Fn to call when a worker is created
   count: os.cpus().length,        // Number of workers
   lifetime: Infinity,             // Min time to keep cluster alive (ms)
   grace: 5000,                    // Grace period between signal and hard shutdown (ms)
@@ -88,41 +95,41 @@ throng({
 ## A complex example
 
 ```js
-const throng = require('throng')
+const throng = require('throng');
 
-throng({ master, worker, count: 4 })
+throng({ primary, worker, count: 4 });
 
 // This will only be called once
-function master() {
-  console.log('Started master')
+function primary() {
+  console.log('Started primary');
 
   process.on('beforeExit', () => {
-    console.log('Master cleanup.')
-  })
+    console.log('Primary cleanup.');
+  });
 }
 
 // This will be called four times
 function worker(id, disconnect) {
-  let exited = false
+  let exited = false;
 
-  console.log(`Started worker ${ id }`)
-  process.on('SIGTERM', shutdown)
-  process.on('SIGINT', shutdown)
+  console.log(`Started worker ${id}`);
+  process.on('SIGTERM', shutdown);
+  process.on('SIGINT', shutdown);
 
   async function shutdown() {
-    if (exited) return
-    exited = true
+    if (exited) return;
+    exited = true;
 
-    await new Promise(r => setTimeout(r, 300))  // simulate async cleanup work
-    console.log(`Worker ${ id } cleanup done.`)
-    disconnect()
+    await new Promise((r) => setTimeout(r, 300)); // simulate async cleanup work
+    console.log(`Worker ${id} cleanup done.`);
+    disconnect();
   }
 }
 ```
 
 ```
 $ node examples/complex
-Started master
+Started primary
 Started worker 1
 Started worker 3
 Started worker 2
@@ -132,7 +139,7 @@ Worker 1 cleanup done.
 Worker 3 cleanup done.
 Worker 2 cleanup done.
 Worker 4 cleanup done.
-Master cleanup.
+Primary cleanup.
 ```
 
 ## Staying alive

@@ -13,7 +13,7 @@ export interface ThrongOptions {
   /**
    * Fn to call when a worker is created (can be async)
    */
-  workerCreatedCallback?: (worker: Worker) => void;
+  workerCreated?: (worker: Worker) => void;
   /**
    * Number of workers (defaults to os.cpus().length)
    */
@@ -53,7 +53,7 @@ const defaults: ThrongOptions = {
 
 export async function throng(options: ThrongOptions, legacy?: Function) {
   const config = defaultsDeep({}, parseOptions(options, legacy), defaults);
-  const { primary, worker, workerCreatedCallback } = config;
+  const { primary, worker, workerCreated } = config;
 
   if (typeof worker !== 'function') {
     throw new Error('Start function required');
@@ -68,7 +68,7 @@ export async function throng(options: ThrongOptions, legacy?: Function) {
 
   listen();
   await primary();
-  fork(config.count, workerCreatedCallback);
+  fork(config.count, workerCreated);
 
   function listen() {
     cluster.on('disconnect', revive);
@@ -90,7 +90,7 @@ export async function throng(options: ThrongOptions, legacy?: Function) {
     if (!running) return;
     if (Date.now() >= reviveUntil) return;
     cluster.fork();
-    workerCreatedCallback?.(worker);
+    workerCreated?.(worker);
   }
 
   function forceKill(signal: any) {
@@ -99,10 +99,10 @@ export async function throng(options: ThrongOptions, legacy?: Function) {
   }
 }
 
-function fork(n: number, workerCreatedCallback: ThrongOptions['workerCreatedCallback']) {
+function fork(n: number, workerCreated: ThrongOptions['workerCreated']) {
   for (var i = 0; i < n; i++) {
     const worker = cluster.fork();
-    workerCreatedCallback?.(worker);
+    workerCreated?.(worker);
   }
 }
 
