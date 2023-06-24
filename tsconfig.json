@@ -11,6 +11,6 @@
     "outDir": "dist",
     "types": ["node", "mocha"]
   },
-  "include": ["src"],
+  "include": ["src", "infrastructure/types"],
   "exclude": ["dist", "src/test"]
 }

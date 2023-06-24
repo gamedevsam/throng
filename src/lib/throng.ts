@@ -1,6 +1,6 @@
 import cluster, { Worker } from 'node:cluster';
 import os from 'node:os';
-import { defaultsDeep } from '../utilities/defaultsDeep';
+import defaultsDeep from 'lodash.defaultsdeep';
 
 export interface ThrongOptions {
   /**
@@ -53,7 +53,7 @@ const defaults: ThrongOptions = {
 };
 
 export async function throng(options: ThrongOptions, legacy?: Function) {
-  const config = defaultsDeep({}, parseOptions(options, legacy), defaults);
+  const config = defaultsDeep({}, parseOptions(options, legacy), defaults) as Required<ThrongOptions>;
   const { primary, worker, workerCreated } = config;
 
   if (typeof worker !== 'function') {
@@ -90,7 +90,7 @@ export async function throng(options: ThrongOptions, legacy?: Function) {
   function revive() {
     if (!running) return;
     if (Date.now() >= reviveUntil) return;
-    cluster.fork();
+    const worker = cluster.fork();
     workerCreated?.(worker);
   }
 
@@ -123,7 +123,7 @@ function disconnect() {
 // and startFunction could be startFn or options object.
 // (whew - what a bad idea!)
 
-function parseOptions(options: ThrongOptions = {}, startFunction?: Function) {
+function parseOptions(options: ThrongOptions = {}, startFunction?: Function): ThrongOptions {
   if (typeof options === 'function') {
     return { worker: options };
   }
