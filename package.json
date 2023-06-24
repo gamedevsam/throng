@@ -19,7 +19,8 @@
     "clean": "node --unhandled-rejections=strict src/cli/clean.mjs",
     "format": "node --unhandled-rejections=strict src/cli/format.mjs",
     "test": "node --unhandled-rejections=strict src/cli/test.mjs",
-    "test_bail": "node --unhandled-rejections=strict src/cli/test_bail.mjs"
+    "test_bail": "node --unhandled-rejections=strict src/cli/test_bail.mjs",
+    "prepare": "husky install"
   },
   "exports": {
     ".": {
@@ -44,6 +45,7 @@
     "chai": "4.3.7",
     "mocha": "10.2.0",
     "prettier": "2.8.8",
-    "typescript": "5.1.3"
+    "typescript": "5.1.3",
+    "husky": "^8.0.0"
   }
 }
