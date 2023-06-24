@@ -79,6 +79,7 @@ function parseOptions(options = {}, startFunction) {
     return {
         primary: options.primary,
         worker: options.worker || options.start,
+        workerCreated: options.workerCreated,
         count: options.count !== undefined ? options.count : options.workers,
         lifetime: options.lifetime,
         grace: options.grace,
