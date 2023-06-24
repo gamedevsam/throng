@@ -1,11 +1,11 @@
-const throng = require('../lib/throng')
+const throng = require('../src/lib/throng');
 
-throng({ worker, count: 4 })
+throng({ worker, count: 4 });
 
 function worker(id) {
-    setInterval(() => process.stdout.write(`-${id}-`), 1000)
-    setTimeout(() => { 
-        process.stdout.write('-crash!-')
-        process.exit()
-    }, Math.random() * 5000 + 5000)
+  setInterval(() => process.stdout.write(`-${id}-`), 1000);
+  setTimeout(() => {
+    process.stdout.write('-crash!-');
+    process.exit();
+  }, Math.random() * 5000 + 5000);
 }

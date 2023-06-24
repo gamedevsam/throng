@@ -1,33 +1,49 @@
 {
   "name": "throng",
-  "version": "5.0.0",
-  "description": "A simple worker-manager for clustered apps",
+  "version": "6.0.0",
+  "description": "A simple worker-manager for clustered apps, updated with TypeScript",
   "keywords": [
     "cluster",
     "worker",
     "process"
   ],
-  "repository": "hunterloftis/throng",
-  "homepage": "https://github.com/hunterloftis/throng",
-  "bugs": "https://github.com/hunterloftis/throng/issues",
-  "main": "lib/throng.js",
+  "repository": "gamedevsam/throng",
+  "homepage": "https://github.com/gamedevsam/throng",
+  "bugs": "https://github.com/gamedevsam/throng/issues",
   "files": [
     "lib"
   ],
   "scripts": {
-    "test": "mocha",
-    "test:bail": "mocha --bail"
+    "build": "node --unhandled-rejections=strict src/cli/build.mjs",
+    "build_infrastructure": "node --unhandled-rejections=strict src/cli/build_infrastructure.mjs",
+    "clean": "node --unhandled-rejections=strict src/cli/clean.mjs",
+    "format": "node --unhandled-rejections=strict src/cli/format.mjs",
+    "test": "node --unhandled-rejections=strict src/cli/test.mjs",
+    "test_bail": "node --unhandled-rejections=strict src/cli/test_bail.mjs"
   },
+  "exports": {
+    ".": {
+      "import": "./dist/esm/lib/throng.js",
+      "require": "./dist/cjs/lib/throng.js"
+    }
+  },
+  "main": "dist/cjs/lib/throng.js",
+  "module": "dist/esm/lib/throng.js",
+  "types": "dist/cjs/lib/throng.d.ts",
   "engines": {
     "node": ">= 10"
   },
-  "author": "Hunter Loftis <hunter@hunterloftis.com>",
+  "authors": [
+    "Hunter Loftis <hunter@hunterloftis.com>",
+    "Samuel Batista <sambatista@pm.me>"
+  ],
   "license": "MIT",
   "devDependencies": {
-    "chai": "^4.2.0",
-    "mocha": "^8.1.3"
-  },
-  "dependencies": {
-    "lodash": "^4.17.20"
+    "@types/mocha": "^10.0.1",
+    "@types/node": "18.16.18",
+    "chai": "4.3.7",
+    "mocha": "10.2.0",
+    "prettier": "2.8.8",
+    "typescript": "5.1.3"
   }
 }

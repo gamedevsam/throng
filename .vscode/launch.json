@@ -1,0 +1,65 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "build",
+      "program": "src/cli/build.mjs",
+      "env": { "NODE_OPTIONS": "--inspect" },
+      "request": "launch",
+      "outputCapture": "std",
+      "skipFiles": ["<node_internals>/**"],
+      "type": "node",
+      "internalConsoleOptions": "openOnSessionStart"
+    },
+    {
+      "name": "build_infrastructure",
+      "program": "src/cli/build_infrastructure.mjs",
+      "env": { "NODE_OPTIONS": "--inspect" },
+      "request": "launch",
+      "outputCapture": "std",
+      "skipFiles": ["<node_internals>/**"],
+      "type": "node",
+      "internalConsoleOptions": "openOnSessionStart"
+    },
+    {
+      "name": "clean",
+      "program": "src/cli/clean.mjs",
+      "env": { "NODE_OPTIONS": "--inspect" },
+      "request": "launch",
+      "outputCapture": "std",
+      "skipFiles": ["<node_internals>/**"],
+      "type": "node",
+      "internalConsoleOptions": "openOnSessionStart"
+    },
+    {
+      "name": "format",
+      "program": "src/cli/format.mjs",
+      "env": { "NODE_OPTIONS": "--inspect" },
+      "request": "launch",
+      "outputCapture": "std",
+      "skipFiles": ["<node_internals>/**"],
+      "type": "node",
+      "internalConsoleOptions": "openOnSessionStart"
+    },
+    {
+      "name": "test",
+      "program": "src/cli/test.mjs",
+      "env": { "NODE_OPTIONS": "--inspect" },
+      "request": "launch",
+      "outputCapture": "std",
+      "skipFiles": ["<node_internals>/**"],
+      "type": "node",
+      "internalConsoleOptions": "openOnSessionStart"
+    },
+    {
+      "name": "test_bail",
+      "program": "src/cli/test_bail.mjs",
+      "env": { "NODE_OPTIONS": "--inspect" },
+      "request": "launch",
+      "outputCapture": "std",
+      "skipFiles": ["<node_internals>/**"],
+      "type": "node",
+      "internalConsoleOptions": "openOnSessionStart"
+    }
+  ]
+}
