@@ -6,7 +6,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.throng = void 0;
 const node_cluster_1 = __importDefault(require("node:cluster"));
 const node_os_1 = __importDefault(require("node:os"));
-const defaultsDeep_1 = require("../utilities/defaultsDeep");
 const nCPU = node_os_1.default.cpus().length;
 const defaults = {
     primary: () => { },
@@ -16,7 +15,7 @@ const defaults = {
     signals: ['SIGTERM', 'SIGINT']
 };
 async function throng(options, legacy) {
-    const config = (0, defaultsDeep_1.defaultsDeep)({}, parseOptions(options, legacy), defaults);
+    const config = defaultsDeep({}, parseOptions(options, legacy), defaults);
     const { primary, worker, workerCreated } = config;
     if (typeof worker !== 'function') {
         throw new Error('Start function required');

@@ -1,5 +1,6 @@
 import cluster, { Worker } from 'node:cluster';
 import os from 'node:os';
+import { defaultsDeep } from '../utilities/defaultsDeep';
 
 export interface ThrongOptions {
   /**

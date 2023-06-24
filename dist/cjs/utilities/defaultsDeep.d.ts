@@ -1,1 +1,1 @@
-declare function defaultsDeep(...args: any[]): any;
+export declare function defaultsDeep(...args: any[]): any;

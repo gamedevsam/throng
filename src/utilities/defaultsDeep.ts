@@ -1,4 +1,4 @@
-function defaultsDeep(...args: any[]) {
+export function defaultsDeep(...args: any[]) {
   const [source, override] = args;
   if (typeof source !== 'object') {
     return override ?? source;

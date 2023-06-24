@@ -1,6 +1,4 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.defaultsDeep = void 0;
 function defaultsDeep(...args) {
     const [source, override] = args;
     if (typeof source !== 'object') {
@@ -25,5 +23,4 @@ function defaultsDeep(...args) {
         return prev;
     }, Array.isArray(source) ? [] : {});
 }
-exports.defaultsDeep = defaultsDeep;
 //# sourceMappingURL=defaultsDeep.js.map

@@ -1,5 +1,4 @@
-"use strict";
-function defaultsDeep(...args) {
+export function defaultsDeep(...args) {
     const [source, override] = args;
     if (typeof source !== 'object') {
         return override ?? source;

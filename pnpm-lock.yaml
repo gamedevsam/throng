@@ -6,7 +6,7 @@ settings:
 
 devDependencies:
   '@types/mocha':
-    specifier: ^10.0.1
+    specifier: 10.0.1
     version: 10.0.1
   '@types/node':
     specifier: 18.16.18
@@ -15,8 +15,8 @@ devDependencies:
     specifier: 4.3.7
     version: 4.3.7
   husky:
-    specifier: ^8.0.0
-    version: 8.0.0
+    specifier: 8.0.3
+    version: 8.0.3
   mocha:
     specifier: 10.2.0
     version: 10.2.0
@@ -284,8 +284,8 @@ packages:
     hasBin: true
     dev: true
 
-  /husky@8.0.0:
-    resolution: {integrity: sha512-4qbE/5dzNDNxFEkX9MNRPKl5+omTXQzdILCUWiqG/lWIAioiM5vln265/l6I2Zx8gpW8l1ukZwGQeCFbBZ6+6w==}
+  /husky@8.0.3:
+    resolution: {integrity: sha512-+dQSyqPh4x1hlO1swXBiNb2HzTDN1I2IGLQx1GrBuiqFJfoMrnZWwVmatvSiO+Iz8fBUnf+lekwNo4c2LlXItg==}
     engines: {node: '>=14'}
     hasBin: true
     dev: true

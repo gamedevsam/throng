@@ -1,5 +1,6 @@
 import cluster from 'node:cluster';
 import os from 'node:os';
+import { defaultsDeep } from '../utilities/defaultsDeep';
 const nCPU = os.cpus().length;
 const defaults = {
     primary: () => { },
